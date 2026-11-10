@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  font-family: system-ui, Segoe UI, sans-serif;
+  background: #f3f4f6;
+  color: #111;
+}
+.wrap { max-width: 880px; margin: 24px auto; padding: 0 16px 48px; }
+h1 { font-size: 24px; margin: 0 0 8px; }
+h2 { font-size: 18px; margin: 0 0 10px; }
+.muted { color: #666; font-size: 13px; }
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+  margin: 14px 0;
+}
+label { display: block; margin-bottom: 12px; font-weight: 600; }
+input[type=password] {
+  display: block; width: 100%; margin-top: 6px; padding: 10px;
+  border: 1px solid #ccc; border-radius: 6px;
+}
+button {
+  border: 1px solid #1f4b7a;
+  background: #1f4b7a;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+pre {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 10px;
+  overflow: auto;
+  max-height: 260px;
+  font-size: 12px;
+}
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid #eee; vertical-align: middle; }
+.err { background: #fde8ea; border: 1px solid #f0b0b8; padding: 10px 12px; border-radius: 8px; margin: 10px 0; }
+.ok { background: #e5f6ea; border: 1px solid #a8d5b5; padding: 10px 12px; border-radius: 8px; margin: 10px 0; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; }

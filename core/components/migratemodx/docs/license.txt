@@ -1,0 +1,4 @@
+Copyright (c) MigrateMODX authors.
+
+Commercial license: one site per purchase unless otherwise agreed.
+Redistribution of the package source without permission is not allowed.

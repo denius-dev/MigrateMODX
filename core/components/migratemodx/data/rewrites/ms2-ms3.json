@@ -1,0 +1,31 @@
+{
+  "version": "1.1",
+  "snippets": {
+    "msProducts": { "to": "msProducts", "note": "MiniShop3 keeps msProducts name; verify options (tpl, limit). Heal front remaps static_file if still pointing at minishop2." },
+    "msCart": { "to": "msCart", "note": "Heal front rewrites cart-page chunks (tpl.msCart / #msCart): ms3_form, product_key, selector SSR." },
+    "msMiniCart": { "to": "msMiniCart", "note": "Heal front bridges to msCart; prefers customMiniCart tpl when present; wires #minicart-content." },
+    "msMiniCartDynamic": { "to": "", "note": "MS2-era AJAX minicart — Heal front stubs it; remove msminicartdynamic.js from layout." },
+    "msOrder": { "to": "msOrder", "note": "Checkout flow differs in ms3 — review template." },
+    "msGetOrder": { "to": "msGetOrder", "note": "Order page tpl may need ms3 classes." },
+    "msGallery": { "to": "msGallery", "note": "Full gallery widget in MS3 — listing cards should use [[+thumb]]/[[+image]] (Heal front swaps product-card embeds)." },
+    "msOptions": { "to": "msOptions", "note": "Options UI differs in ms3." },
+    "msProductOptions": { "to": "msOptions", "note": "Renamed/merged into msOptions in many ms3 setups." }
+  },
+  "chunks_prefix": {
+    "tpl.msProducts": { "attention": true, "note": "Rebuild product row chunks for ms3 markup." },
+    "tpl.msCart": { "attention": true, "note": "Heal front rewrites MS2→MS3 cart markup + #msCart selector; verify theme-specific JS." },
+    "tpl.msOrder": { "attention": true, "note": "Rebuild order chunks for ms3." },
+    "tpl.msGetOrder": { "attention": true, "note": "Rebuild get-order chunks for ms3." },
+    "tpl.msMiniCart": { "attention": true, "note": "Rebuild minicart chunk for ms3 or keep customMiniCart via Heal front bridge." },
+    "customMiniCart": { "attention": true, "note": "Heal front updates ms2_form → ms3_form and lexicon keys when present." },
+    "productCard": { "attention": true, "note": "Listing cards: prefer [[+thumb]] over [[msGallery]] after MS3." }
+  },
+  "attention_patterns": [
+    { "id": "ms2_add_to_cart_js", "re": "miniShop2\\.(Callbacks|Cart|Order|Message)|ms2_product_form|ms2\\.Cart", "message": "miniShop2 frontend JS detected — update theme scripts to MiniShop3 (ms3) cart API." },
+    { "id": "ms2_form_class", "re": "ms2_form", "message": "Form class ms2_form — Heal front remaps to ms3_form where safe; verify cart/order templates." },
+    { "id": "ms2_class_key_query", "re": "class_key['\\\"\\s]*[=:]\\s*['\\\"]msProduct['\\\"]|newQuery\\(['\\\"]msProduct['\\\"]\\)", "message": "Legacy class_key/newQuery('msProduct') — Heal front rewrites to MiniShop3\\Model\\msProduct (fixes zero product counts)." },
+    { "id": "ms2_class_key", "re": "msProduct|miniShop2", "message": "Legacy miniShop2 class/key reference — verify after ms3 install." },
+    { "id": "listing_msGallery", "re": "msGallery\\?[^\\]]*product=`\\[\\[\\+id\\]\\]`", "message": "msGallery used as product-card thumb — MS3 gallery is a full widget; Heal front swaps to [[+thumb]]/[[+image]]." },
+    { "id": "phpthumbon_filehandler", "re": "modFileHandler", "message": "modFileHandler (removed in MODX 3) — Heal front patches phpThumbOn::makeDir when package present." }
+  ]
+}

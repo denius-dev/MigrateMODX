@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "element_replacements": [
+    {
+      "id": "modx_get_option_context",
+      "safety": "low",
+      "detect": "\\$modx->getOption\\(\\s*['\\\"]context['\\\"]",
+      "message": "Review getOption('context') usage for MODX 3 context handling.",
+      "autofix": false
+    },
+    {
+      "id": "mod_action_ref",
+      "safety": "low",
+      "detect": "\\bmodAction\\b|\\$modx->actionMap|MODx\\.action\\b",
+      "message": "modAction / actionMap removed in MODX 3 — rewrite manager actions.",
+      "autofix": false
+    },
+    {
+      "id": "mod_rest_client",
+      "safety": "low",
+      "detect": "\\bmodRestClient\\b",
+      "message": "modRestClient removed — use Guzzle/psr-7 HTTP client.",
+      "autofix": false
+    },
+    {
+      "id": "eval_tv",
+      "safety": "low",
+      "detect": "@EVAL\\b",
+      "message": "@EVAL TV binding is unsafe and often broken on MODX 3 — replace with snippet.",
+      "autofix": false
+    }
+  ],
+  "safe_string_replacements": [
+    {
+      "id": "processors_resource_path",
+      "safety": "high",
+      "from": "processors/resource/create.class.php",
+      "to": "processors/Resource/Create.php",
+      "message": "Flat processor path → MODX 3 namespaced processor path (review still required)."
+    },
+    {
+      "id": "processors_resource_update_path",
+      "safety": "high",
+      "from": "processors/resource/update.class.php",
+      "to": "processors/Resource/Update.php",
+      "message": "Flat processor path → MODX 3 namespaced processor path."
+    }
+  ]
+}

@@ -1,0 +1,1067 @@
+{
+    "version": "1.2.0",
+    "packages": {
+        "ace": {
+            "status": "compatible",
+            "modx3": true,
+            "actions": [
+                "update"
+            ]
+        },
+        "admintools": {
+            "title": "AdminTools",
+            "status": "incompatible",
+            "modx3": false,
+            "notes": "Breaks MODX 3 /setup/: require of core/model/modx/modcachemanager.class.php (MODX 2 path). Quarantine before core apply.",
+            "migration": "Before Phase 2: disable plugins and rename core/components/admintools (+ assets). After MODX 3 is stable, install a MODX 3–ready fork if any, or drop the package.",
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "blocks_setup"
+            ],
+            "aliases": [
+                "admin-tools",
+                "admin_tools"
+            ],
+            "quarantine": "prepare"
+        },
+        "ajaxform": {
+            "status": "compatible_from",
+            "notes": "Verify latest release for MODX 3 / PHP 8.",
+            "actions": [
+                "update"
+            ]
+        },
+        "autoredirector": {
+            "title": "autoRedirector",
+            "status": "compatible_from",
+            "notes": "Verify on MODX 3 / PHP 8.",
+            "actions": [
+                "update"
+            ]
+        },
+        "babel": {
+            "status": "compatible",
+            "modx3": true,
+            "actions": [
+                "update"
+            ]
+        },
+        "backupmodx": {
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "batcher": {
+            "title": "Batcher",
+            "status": "incompatible",
+            "modx3": false,
+            "notes": "Often recommended to remove before MODX 3 upgrade; can interfere with setup/manager.",
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "blocks_setup"
+            ],
+            "quarantine": "prepare"
+        },
+        "botaway": {
+            "title": "botaway",
+            "status": "unknown",
+            "notes": "Legacy bot filter — verify or remove.",
+            "actions": [
+                "verify"
+            ]
+        },
+        "botblockx": {
+            "title": "BotBlockX",
+            "status": "unknown",
+            "notes": "Legacy bot filter — verify or remove.",
+            "actions": [
+                "verify"
+            ]
+        },
+        "cityfields": {
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "ckeditor": {
+            "title": "CKEditor",
+            "status": "compatible_from",
+            "notes": "Prefer TinyMCE RTE on MODX 3 if CKEditor breaks.",
+            "actions": [
+                "update"
+            ],
+            "alternatives": [
+                {
+                    "name": "TinyMCE RTE",
+                    "signature": "tinymcerte"
+                }
+            ]
+        },
+        "clientconfig": {
+            "status": "compatible",
+            "modx3": true,
+            "actions": [
+                "update"
+            ]
+        },
+        "collections": {
+            "status": "compatible",
+            "modx3": true,
+            "notes": "Custom resources must use namespaced extends on MODX 3.",
+            "actions": [
+                "update"
+            ],
+            "risks": [
+                "custom_resource"
+            ]
+        },
+        "commerce": {
+            "status": "compatible",
+            "modx3": true,
+            "actions": [
+                "update"
+            ]
+        },
+        "console": {
+            "title": "Console",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "contentblocks": {
+            "status": "compatible",
+            "modx3": true,
+            "actions": [
+                "update"
+            ]
+        },
+        "controlerrorlog": {
+            "title": "controlErrorLog",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "currencyrate": {
+            "title": "currencyRate",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "dateago": {
+            "title": "DateAgo",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "debugparser": {
+            "title": "debugParser",
+            "status": "compatible_from",
+            "notes": "Dev-only; safe to disable on production MODX 3.",
+            "actions": [
+                "optional"
+            ]
+        },
+        "easycomm": {
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "flip": {
+            "title": "flip",
+            "status": "unknown",
+            "actions": [
+                "verify"
+            ]
+        },
+        "formit": {
+            "title": "FormIt",
+            "status": "compatible",
+            "modx3": true,
+            "min_version": "4.2.0",
+            "notes": "Update to a FormIt build that declares MODX 3 support.",
+            "actions": [
+                "update"
+            ]
+        },
+        "frontendmanager": {
+            "title": "frontendManager",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "getresources": {
+            "title": "getResources",
+            "status": "compatible_from",
+            "notes": "Prefer pdoResources from pdoTools on modern stacks.",
+            "successor": "pdotools",
+            "alternatives": [
+                {
+                    "name": "pdoTools / pdoResources",
+                    "signature": "pdotools"
+                }
+            ],
+            "actions": [
+                "optional"
+            ]
+        },
+        "googlesitemap": {
+            "title": "GoogleSiteMap",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "hitspage": {
+            "title": "HitsPage",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "hybridauth": {
+            "status": "compatible_from",
+            "notes": "Update providers; test OAuth on PHP 8.",
+            "actions": [
+                "update"
+            ]
+        },
+        "icontv": {
+            "title": "iconTV",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "if": {
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "importx": {
+            "title": "ImportX",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "jevix": {
+            "title": "Jevix",
+            "status": "compatible_from",
+            "notes": "HTML sanitizer — test PHP 8.",
+            "actions": [
+                "update"
+            ]
+        },
+        "localizator": {
+            "title": "Localizator",
+            "status": "replaced_by",
+            "successor": "localizator3",
+            "successor_title": "localizator3",
+            "notes": "On MODX 3 use localizator3.",
+            "migration": "Install localizator3, migrate contexts/settings, uninstall Localizator 2.x.",
+            "alternatives": [
+                {
+                    "name": "localizator3",
+                    "signature": "localizator3"
+                }
+            ],
+            "actions": [
+                "replace"
+            ]
+        },
+        "localizator3": {
+            "title": "localizator3",
+            "status": "compatible",
+            "modx3": true,
+            "min_version": "1.0.0",
+            "actions": [
+                "update"
+            ]
+        },
+        "login": {
+            "status": "compatible",
+            "modx3": true,
+            "actions": [
+                "update"
+            ]
+        },
+        "loginfields": {
+            "title": "LoginFields",
+            "status": "incompatible",
+            "modx3": false,
+            "quarantine": "post_ms3",
+            "notes": "Injects short modUser map — Undefined array key on MODX 3.",
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "breaks_front"
+            ]
+        },
+        "logrotation": {
+            "title": "logRotation",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "looked": {
+            "title": "Looked",
+            "status": "incompatible",
+            "modx3": false,
+            "notes": "PHP 8 optional-parameter Fatal/Deprecated — quarantined after MS3.",
+            "actions": [
+                "remove"
+            ],
+            "quarantine": "post_ms3"
+        },
+        "mapyandex": {
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "migratemodx": {
+            "status": "compatible",
+            "modx3": true,
+            "notes": "This package.",
+            "actions": []
+        },
+        "migx": {
+            "status": "compatible_from",
+            "notes": "Test CMP on MODX 3; prefer maintained fork if needed.",
+            "actions": [
+                "update"
+            ],
+            "risks": [
+                "cmp"
+            ]
+        },
+        "minishop2": {
+            "title": "miniShop2",
+            "status": "replaced_by",
+            "modx3": false,
+            "successor": "minishop3",
+            "successor_title": "MiniShop3",
+            "notes": "miniShop2 does not install on MODX 3.",
+            "migration": "Migrate catalog/orders to MiniShop3 (ms3). Keep ms2 only on staging until data is moved; then uninstall miniShop2.",
+            "alternatives": [
+                {
+                    "name": "MiniShop3",
+                    "signature": "minishop3"
+                }
+            ],
+            "aliases": [
+                "ms2",
+                "mini-shop-2"
+            ],
+            "actions": [
+                "replace"
+            ],
+            "risks": [
+                "ecommerce"
+            ],
+            "quarantine": "post_ms3"
+        },
+        "minishop3": {
+            "title": "MiniShop3",
+            "status": "compatible",
+            "modx3": true,
+            "php": "8.2",
+            "min_modx": "3.0.3",
+            "min_version": "1.0.0",
+            "requires": [
+                "pdotools",
+                "vuetools"
+            ],
+            "notes": "Native MODX 3 shop — successor of miniShop2. Requires MODX ≥3.0.3, PHP ≥8.2, pdoTools 3.x and VueTools.",
+            "actions": [
+                "update"
+            ]
+        },
+        "moddevtools": {
+            "title": "modDevTools",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "modrelation": {
+            "title": "modRelation",
+            "status": "compatible_from",
+            "notes": "Often in extension_packages — verify map on MODX 3.",
+            "actions": [
+                "update"
+            ]
+        },
+        "moregallery": {
+            "status": "compatible",
+            "modx3": true,
+            "actions": [
+                "update"
+            ]
+        },
+        "ms2gallery": {
+            "title": "ms2Gallery",
+            "status": "replaced_by",
+            "modx3": false,
+            "successor": "minishop3",
+            "successor_title": "MiniShop3 media",
+            "notes": "ms2 gallery stack — on MODX 3 prefer MiniShop3 media / files.",
+            "migration": "Move product images into MiniShop3 media approach, then remove ms2Gallery.",
+            "alternatives": [
+                {
+                    "name": "MiniShop3",
+                    "signature": "minishop3"
+                }
+            ],
+            "actions": [
+                "replace"
+            ],
+            "quarantine": "post_ms3"
+        },
+        "msbalance": {
+            "title": "msBalance",
+            "status": "incompatible",
+            "quarantine": "post_ms3",
+            "modx3": false,
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "msbonus": {
+            "title": "msBonus",
+            "status": "incompatible",
+            "quarantine": "post_ms3",
+            "modx3": false,
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "msbonus2": {
+            "title": "msBonus2",
+            "status": "incompatible",
+            "quarantine": "post_ms3",
+            "modx3": false,
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "mscarousel": {
+            "title": "msCarousel",
+            "status": "incompatible",
+            "quarantine": "post_ms3",
+            "modx3": false,
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "mscatalyst": {
+            "title": "msCatalyst",
+            "status": "compatible",
+            "modx3": true,
+            "php": "8.1",
+            "min_version": "1.0.0",
+            "notes": "Facets, search, SEO landings, sync for miniShop2 and MiniShop3.",
+            "actions": [
+                "update"
+            ]
+        },
+        "mschart": {
+            "title": "msChart",
+            "status": "incompatible",
+            "modx3": false,
+            "quarantine": "post_ms3",
+            "notes": "miniShop2 chart extra — not for MiniShop3.",
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "msdiscount": {
+            "title": "msDiscount",
+            "status": "replaced_by",
+            "successor": "minishop3",
+            "notes": "miniShop2 promotions — after MS3 MigrateMODX quarantines it (pollutes msProductData map).",
+            "migration": "Recreate discount rules in MiniShop3 (or a ms3-compatible extra), then remove msDiscount.",
+            "alternatives": [
+                {
+                    "name": "MiniShop3",
+                    "signature": "minishop3"
+                }
+            ],
+            "actions": [
+                "replace"
+            ],
+            "quarantine": "post_ms3"
+        },
+        "msearch2": {
+            "title": "mSearch2",
+            "status": "replaced_by",
+            "modx3": false,
+            "successor": "mscatalyst",
+            "successor_title": "msCatalyst",
+            "notes": "Facet/search stack for ms2 — on MODX 3 use msCatalyst.",
+            "migration": "Install msCatalyst, import/rebuild index and facets, then remove mSearch2.",
+            "alternatives": [
+                {
+                    "name": "msCatalyst",
+                    "signature": "mscatalyst"
+                }
+            ],
+            "actions": [
+                "replace"
+            ],
+            "risks": [
+                "search",
+                "facets"
+            ],
+            "quarantine": "post_ms3"
+        },
+        "msemailtab": {
+            "title": "msEmailTab",
+            "status": "incompatible",
+            "modx3": false,
+            "quarantine": "post_ms3",
+            "notes": "miniShop2 manager tab.",
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "msexportusersexcel": {
+            "title": "msExportUsersExcel",
+            "status": "compatible_from",
+            "notes": "Not shop-core; verify MODX 3.",
+            "actions": [
+                "update"
+            ]
+        },
+        "msfacets": {
+            "title": "msFacets",
+            "status": "replaced_by",
+            "successor": "mscatalyst",
+            "successor_title": "msCatalyst",
+            "notes": "Renamed / superseded by msCatalyst.",
+            "migration": "Install msCatalyst and retire msFacets.",
+            "alternatives": [
+                {
+                    "name": "msCatalyst",
+                    "signature": "mscatalyst"
+                }
+            ],
+            "actions": [
+                "replace"
+            ],
+            "quarantine": "post_ms3"
+        },
+        "msfavorites": {
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "msgallerysearch": {
+            "title": "msGallerySearch",
+            "status": "incompatible",
+            "modx3": false,
+            "quarantine": "post_ms3",
+            "notes": "Depends on ms2 gallery stack.",
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "msinform": {
+            "title": "msInform",
+            "status": "incompatible",
+            "quarantine": "post_ms3",
+            "modx3": false,
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "msliveprice": {
+            "title": "msLivePrice",
+            "status": "incompatible",
+            "quarantine": "post_ms3",
+            "modx3": false,
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "msminicartdynamic": {
+            "title": "msMiniCartDynamic",
+            "status": "incompatible",
+            "modx3": false,
+            "notes": "miniShop2 AJAX minicart — stubbed/quarantined after MS3.",
+            "actions": [
+                "remove"
+            ],
+            "quarantine": "post_ms3"
+        },
+        "msoptionsprice": {
+            "title": "msOptionsPrice",
+            "status": "replaced_by",
+            "successor": "minishop3",
+            "quarantine": "post_ms3",
+            "modx3": false,
+            "actions": [
+                "replace"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "msoptionsprice2": {
+            "title": "msOptionsPrice2",
+            "status": "replaced_by",
+            "successor": "minishop3",
+            "notes": "Variants for ms2 — on MODX 3 use MiniShop3 options / ms3Variants.",
+            "migration": "Rebuild option prices in MiniShop3, then uninstall msOptionsPrice2.",
+            "alternatives": [
+                {
+                    "name": "MiniShop3 variants",
+                    "signature": "minishop3"
+                }
+            ],
+            "actions": [
+                "replace"
+            ],
+            "quarantine": "post_ms3"
+        },
+        "msorderdiscount": {
+            "title": "msOrderDiscount",
+            "status": "incompatible",
+            "modx3": false,
+            "quarantine": "post_ms3",
+            "notes": "miniShop2 order discounts — pollutes maps / getService.",
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra",
+                "breaks_front"
+            ]
+        },
+        "msproductremains": {
+            "title": "msProductRemains",
+            "status": "incompatible",
+            "quarantine": "post_ms3",
+            "modx3": false,
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "msproductscopy": {
+            "title": "msProductsCopy",
+            "status": "incompatible",
+            "quarantine": "post_ms3",
+            "modx3": false,
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "mspromocode": {
+            "title": "msPromoCode",
+            "status": "incompatible",
+            "quarantine": "post_ms3",
+            "modx3": false,
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "mspromocode2": {
+            "title": "msPromoCode2",
+            "status": "incompatible",
+            "quarantine": "post_ms3",
+            "modx3": false,
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "mspyacassa": {
+            "title": "msPyacassa",
+            "status": "incompatible",
+            "modx3": false,
+            "quarantine": "post_ms3",
+            "notes": "miniShop2 payment — use MiniShop3 payment modules.",
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "mssetincart": {
+            "title": "msSetInCart",
+            "status": "incompatible",
+            "quarantine": "post_ms3",
+            "modx3": false,
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "mstelegram": {
+            "title": "msTelegram",
+            "status": "compatible_from",
+            "notes": "Often wired to ms2 orders — re-test after MiniShop3.",
+            "actions": [
+                "verify"
+            ]
+        },
+        "mstimestamp": {
+            "title": "msTimeStamp",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "mstools": {
+            "title": "msTools",
+            "status": "incompatible",
+            "modx3": false,
+            "quarantine": "post_ms3",
+            "notes": "miniShop2 toolbox — typically breaks after MS3.",
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "ms2_extra"
+            ]
+        },
+        "msvendor": {
+            "title": "msVendor (legacy)",
+            "status": "replaced_by",
+            "successor": "minishop3",
+            "quarantine": "post_ms3",
+            "actions": [
+                "replace"
+            ]
+        },
+        "msync": {
+            "status": "compatible_from",
+            "notes": "1C sync — verify MODX 3 build or use msCatalyst sync profiles.",
+            "alternatives": [
+                {
+                    "name": "msCatalyst Sync",
+                    "signature": "mscatalyst"
+                }
+            ],
+            "actions": [
+                "update"
+            ]
+        },
+        "office": {
+            "status": "compatible_from",
+            "notes": "Personal cabinet — confirm MODX 3 build.",
+            "actions": [
+                "update"
+            ]
+        },
+        "pdotools": {
+            "title": "pdoTools",
+            "status": "compatible",
+            "modx3": true,
+            "php": "8.1",
+            "min_version": "3.0.0",
+            "notes": "On MODX 3 use pdoTools 3.x (Fenom). Older 2.x builds are not enough.",
+            "actions": [
+                "update"
+            ],
+            "risks": [
+                "fenom"
+            ]
+        },
+        "phpthumbon": {
+            "status": "compatible_from",
+            "aliases": [
+                "phpthumbof",
+                "pthumb"
+            ],
+            "notes": "Test image pipeline on PHP 8.",
+            "actions": [
+                "update"
+            ]
+        },
+        "recaptchav3": {
+            "title": "reCaptchaV3",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "redactor": {
+            "status": "compatible",
+            "modx3": true,
+            "actions": [
+                "update"
+            ]
+        },
+        "redirector": {
+            "status": "compatible",
+            "modx3": true,
+            "actions": [
+                "update"
+            ]
+        },
+        "scheduler": {
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "sendex": {
+            "title": "Sendex",
+            "status": "compatible_from",
+            "notes": "Newsletter — confirm MODX 3 build.",
+            "actions": [
+                "update"
+            ]
+        },
+        "seofilter": {
+            "title": "SeoFilter",
+            "status": "incompatible",
+            "modx3": false,
+            "successor": "mscatalyst",
+            "successor_title": "msCatalyst",
+            "notes": "No MODX 3 release on modstore.",
+            "migration": "msCatalyst can import SeoFilter landings; plan SEO redirects after cutover.",
+            "alternatives": [
+                {
+                    "name": "msCatalyst",
+                    "signature": "mscatalyst"
+                }
+            ],
+            "actions": [
+                "replace"
+            ],
+            "risks": [
+                "seo"
+            ],
+            "quarantine": "post_ms3"
+        },
+        "seopro": {
+            "title": "SEO Pro",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "simplerating": {
+            "title": "FiveStarRating / SimpleRating",
+            "status": "compatible_from",
+            "aliases": [
+                "fivestarrating"
+            ],
+            "actions": [
+                "update"
+            ]
+        },
+        "simplesearch": {
+            "title": "SimpleSearch",
+            "status": "compatible_from",
+            "notes": "Prefer msCatalyst on shop sites.",
+            "actions": [
+                "update"
+            ]
+        },
+        "sweetalert2": {
+            "title": "SweetAlert2",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "switchtemplate": {
+            "status": "unknown",
+            "actions": [
+                "verify"
+            ]
+        },
+        "tagelementplugin": {
+            "title": "tagElementPlugin",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "tagger": {
+            "status": "compatible",
+            "modx3": true,
+            "actions": [
+                "update"
+            ]
+        },
+        "tcmailing": {
+            "status": "compatible_from",
+            "notes": "Mailing component — confirm MODX 3 build.",
+            "actions": [
+                "update"
+            ]
+        },
+        "tickets": {
+            "title": "Tickets",
+            "status": "incompatible",
+            "modx3": false,
+            "notes": "Breaks MODX 3 manager: metadata.mysql.php writes $this->map['modUser'] (xPDO 2). On MODX 3 the key is MODX\\Revolution\\modUser — Undefined array key + empty manager UI. Upstream still ships the MODX 2 map line.",
+            "migration": "Quarantine core/components/tickets and assets/components/tickets (*.__disabled_for_modx3), clear core/cache, reload manager. Install a MODX 3–ready fork only when available; do not re-enable stock Tickets on MODX 3.",
+            "actions": [
+                "remove"
+            ],
+            "risks": [
+                "blocks_manager",
+                "blocks_setup"
+            ],
+            "quarantine": "prepare"
+        },
+        "tinycompressor": {
+            "title": "tinyCompressor",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "tinymce": {
+            "status": "compatible_from",
+            "notes": "Prefer maintained TinyMCE extra for MODX 3.",
+            "actions": [
+                "update"
+            ]
+        },
+        "tinymcerte": {
+            "status": "compatible",
+            "modx3": true,
+            "actions": [
+                "update"
+            ]
+        },
+        "translit": {
+            "title": "translit",
+            "status": "compatible",
+            "modx3": true,
+            "actions": [
+                "update"
+            ]
+        },
+        "units": {
+            "title": "Units",
+            "status": "unknown",
+            "notes": "Legacy units extra — verify.",
+            "actions": [
+                "verify"
+            ]
+        },
+        "upgrademodx": {
+            "status": "compatible",
+            "notes": "Core file updater only — does not migrate extras. MigrateMODX complements it.",
+            "actions": [
+                "optional"
+            ]
+        },
+        "versionx": {
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "vuetools": {
+            "title": "VueTools",
+            "status": "compatible",
+            "modx3": true,
+            "php": "8.1",
+            "min_version": "1.0.0",
+            "notes": "Required by MiniShop3 manager UI.",
+            "actions": [
+                "update"
+            ],
+            "aliases": [
+                "vue-tools"
+            ]
+        },
+        "wayfinder": {
+            "title": "Wayfinder",
+            "status": "compatible_from",
+            "notes": "Prefer pdoMenu from pdoTools.",
+            "successor": "pdotools",
+            "alternatives": [
+                {
+                    "name": "pdoTools / pdoMenu",
+                    "signature": "pdotools"
+                }
+            ],
+            "actions": [
+                "optional"
+            ]
+        },
+        "xbuttons": {
+            "title": "xButtons",
+            "status": "compatible_from",
+            "actions": [
+                "update"
+            ]
+        },
+        "xlike": {
+            "title": "xLike",
+            "status": "incompatible",
+            "modx3": false,
+            "notes": "Breaks on MODX 3 ($modx->xlike) — quarantined after MS3.",
+            "actions": [
+                "remove"
+            ],
+            "quarantine": "post_ms3"
+        }
+    }
+}

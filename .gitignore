@@ -1,0 +1,12 @@
+.idea/
+.vscode/
+*.zip
+_build/encode.config.php
+core/cache/
+_sandbox/
+_dist/
+graphify-out/
+_tmp_*.php
+*.bak
+Thumbs.db
+.DS_Store

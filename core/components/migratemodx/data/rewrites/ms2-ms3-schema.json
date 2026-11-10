@@ -1,0 +1,211 @@
+{
+  "version": "1.0",
+  "requires_package": "minishop3",
+  "ms2_prefix_hint": "ms2_",
+  "tables": [
+    {
+      "id": "product_data",
+      "ms2_table": "ms2_products",
+      "ms3_table": "ms3_products",
+      "key": "id",
+      "columns": {
+        "id": "id",
+        "article": "article",
+        "price": "price",
+        "old_price": "old_price",
+        "weight": "weight",
+        "image": "image",
+        "thumb": "thumb",
+        "vendor": "vendor_id",
+        "made_in": "made_in",
+        "new": "new",
+        "popular": "popular",
+        "favorite": "favorite",
+        "tags": "tags",
+        "color": "color",
+        "size": "size",
+        "source": "source_id",
+        "count": "stock",
+        "stock": "stock"
+      },
+      "required_ms2": ["id", "price"],
+      "notes": "MS3: count→stock (legacy MS2) or stock→stock (newer MS2), source→source_id, vendor→vendor_id. Both count and stock mapped so either column copies."
+    },
+    {
+      "id": "category_member",
+      "ms2_table": "ms2_product_categories",
+      "ms3_table": "ms3_product_categories",
+      "key": "product_id",
+      "columns": {
+        "product_id": "product_id",
+        "category_id": "category_id"
+      },
+      "required_ms2": ["product_id", "category_id"]
+    },
+    {
+      "id": "order",
+      "ms2_table": "ms2_orders",
+      "ms3_table": "ms3_orders",
+      "key": "id",
+      "columns": {
+        "id": "id",
+        "user_id": "user_id",
+        "createdon": "createdon",
+        "updatedon": "updatedon",
+        "num": "num",
+        "cost": "cost",
+        "cart_cost": "cart_cost",
+        "delivery_cost": "delivery_cost",
+        "weight": "weight",
+        "status": "status_id",
+        "delivery": "delivery_id",
+        "payment": "payment_id",
+        "context": "context",
+        "comment": "order_comment",
+        "properties": "properties"
+      },
+      "required_ms2": ["id"]
+    },
+    {
+      "id": "order_product",
+      "ms2_table": "ms2_order_products",
+      "ms3_table": "ms3_order_products",
+      "key": "id",
+      "columns": {
+        "id": "id",
+        "order_id": "order_id",
+        "product_id": "product_id",
+        "name": "name",
+        "count": "count",
+        "price": "price",
+        "weight": "weight",
+        "cost": "cost",
+        "options": "options"
+      },
+      "required_ms2": ["id", "order_id"]
+    },
+    {
+      "id": "order_address",
+      "ms2_table": "ms2_order_addresses",
+      "ms3_table": "ms3_order_addresses",
+      "key": "id",
+      "columns": {
+        "id": "id",
+        "user_id": "user_id",
+        "createdon": "createdon",
+        "updatedon": "updatedon",
+        "receiver": "first_name",
+        "phone": "phone",
+        "email": "email",
+        "country": "country",
+        "index": "index",
+        "region": "region",
+        "city": "city",
+        "street": "street",
+        "building": "building",
+        "room": "room",
+        "comment": "comment",
+        "properties": "properties"
+      },
+      "required_ms2": ["id"]
+    },
+    {
+      "id": "payment",
+      "ms2_table": "ms2_payments",
+      "ms3_table": "ms3_payments",
+      "key": "id",
+      "columns": {
+        "id": "id",
+        "name": "name",
+        "description": "description",
+        "price": "price",
+        "logo": "logo",
+        "rank": "position",
+        "active": "active",
+        "class": "class",
+        "properties": "properties"
+      },
+      "required_ms2": ["id", "name"]
+    },
+    {
+      "id": "delivery",
+      "ms2_table": "ms2_deliveries",
+      "ms3_table": "ms3_deliveries",
+      "key": "id",
+      "columns": {
+        "id": "id",
+        "name": "name",
+        "description": "description",
+        "price": "price",
+        "weight_price": "weight_price",
+        "distance_price": "distance_price",
+        "logo": "logo",
+        "rank": "position",
+        "active": "active",
+        "class": "class",
+        "properties": "properties",
+        "free_delivery_amount": "free_delivery_amount"
+      },
+      "required_ms2": ["id", "name"]
+    },
+    {
+      "id": "status",
+      "ms2_table": "ms2_order_statuses",
+      "ms3_table": "ms3_order_statuses",
+      "key": "id",
+      "columns": {
+        "id": "id",
+        "name": "name",
+        "description": "description",
+        "color": "color",
+        "email_user": "email_user",
+        "email_manager": "email_manager",
+        "subject_user": "subject_user",
+        "subject_manager": "subject_manager",
+        "body_user": "body_user",
+        "body_manager": "body_manager",
+        "active": "active",
+        "final": "final",
+        "fixed": "fixed",
+        "rank": "position"
+      },
+      "required_ms2": ["id", "name"]
+    },
+    {
+      "id": "product_file",
+      "ms2_table": "ms2_product_files",
+      "ms3_table": "ms3_product_files",
+      "key": "id",
+      "columns": {
+        "id": "id",
+        "product_id": "product_id",
+        "source": "source_id",
+        "parent": "parent_id",
+        "type": "type",
+        "rank": "position",
+        "url": "url",
+        "name": "name",
+        "path": "path",
+        "file": "file",
+        "properties": "properties",
+        "hash": "hash",
+        "active": "active",
+        "description": "description"
+      },
+      "required_ms2": ["id", "product_id"],
+      "notes": "MS3 renames parent→parent_id, rank→position, source→source_id. Missing parent_id breaks gallery size merge (large/small)."
+    },
+    {
+      "id": "product_option",
+      "ms2_table": "ms2_product_options",
+      "ms3_table": "ms3_product_options",
+      "key": "product_id",
+      "columns": {
+        "product_id": "product_id",
+        "key": "key",
+        "value": "value"
+      },
+      "required_ms2": ["product_id", "key"]
+    }
+  ]
+}

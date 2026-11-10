@@ -1,0 +1,42 @@
+{
+  "version": "1.1",
+  "advice": "On complex sites prefer dump → fresh MODX 3 setup → reinstall extras, or refresh the DB, rather than a magical row-by-row core migrate. Table shapes differ between 2.x and 3.x.",
+  "advice_ru": "На сложных сайтах надёжнее: дамп → чистая установка MODX 3 → переустановка extras, либо обновление БД через /setup/, чем «магический» построчный перенос ядра. Формы таблиц 2.x и 3.x отличаются.",
+  "notes": [
+    {
+      "id": "transport_packages",
+      "message": "modx_transport_packages / package metadata paths differ; reinstall extras on 3 rather than copying package rows blindly.",
+      "message_ru": "Таблицы и пути метаданных пакетов (modx_transport_packages) в 3.x другие — extras лучше переустановить, а не копировать строки пакетов из 2.x."
+    },
+    {
+      "id": "system_settings",
+      "message": "Some system settings keys removed or renamed in MODX 3 — review after setup.",
+      "message_ru": "Часть ключей системных настроек в MODX 3 удалена или переименована — после /setup/ сверьте настройки."
+    },
+    {
+      "id": "modx_site_content",
+      "message": "Resource table largely compatible, but class_key / content types and processors paths change — verify custom resource classes.",
+      "message_ru": "Таблица ресурсов в целом совместима, но меняются class_key, типы контента и пути процессоров — проверьте кастомные классы ресурсов."
+    },
+    {
+      "id": "modx_categories_closures",
+      "message": "Category closure / tree storage may need rebuild after upgrade.",
+      "message_ru": "Closure/дерево категорий после апгрейда может потребовать пересборки."
+    },
+    {
+      "id": "manager_menus",
+      "message": "modMenu / actions: modAction removed — menus and CMP entry points often need reinstall of extras.",
+      "message_ru": "modAction в MODX 3 нет: меню manager и точки входа CMP часто чинятся переустановкой extras."
+    },
+    {
+      "id": "media_sources",
+      "message": "Media sources and filesystem paths usually survive; custom source classes must be MODX 3 compatible.",
+      "message_ru": "Медиа-источники и пути обычно сохраняются; кастомные классы source должны быть совместимы с MODX 3."
+    },
+    {
+      "id": "users_acl",
+      "message": "Users/ACL mostly carry over via setup upgrade; custom user classes and policies need review.",
+      "message_ru": "Пользователи и ACL обычно переезжают через upgrade в /setup/; кастомные классы пользователей и политики нужно проверить."
+    }
+  ]
+}

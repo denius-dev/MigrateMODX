@@ -1,0 +1,4 @@
+# Recovery UI is intentionally reachable; snapshot store must NOT live here.
+<IfModule mod_authz_core.c>
+  # allow
+</IfModule>

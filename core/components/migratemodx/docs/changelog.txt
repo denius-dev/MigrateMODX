@@ -1,0 +1,260 @@
+1.3.31-pl
+=======
+- Heal front: dedicated cart page / `tpl.msCart(.row)` — same MS3 markup rewrite as minicart (`product_key`, `ms3_form`, qty), keeps `[[!msOrder]]`, mounts `#msCart` + `selector` for SSR.
+- Live-sync: soft-refresh full `#msCart` page (not only `#minicart-content`) when MS3 omits `render` HTML; sync total cost hints.
+- Safer `msOrder` dedupe: only strip duplicates from layout chrome (header/footer/scripts), never from cart/checkout pages.
+- Minicart detection broadened (templates + content heuristics); cart-page vs minicart split so order form is not ripped out of checkout.
+
+1.3.30-pl
+=======
+- Heal static elements: bind `static=1, source=0` snippets/chunks/plugins/templates with relative paths to the Filesystem media source (or inline the file). MS3 `api.php` runs from `assets/components/minishop3/`, so relative paths resolved to nothing, msCart was cached as an empty snippet and the cart API returned no `render` (badge stuck at 0, remove did not redraw the minicart).
+- Migrate orders: deterministic `uuid` per MS2 order (empty unique uuid + upsert glued all orders into one row), `token=''`, `product_key`, status remap that keeps the MS3 draft status (id 1 = cart) intact, address `order_id` from `ms2_orders.address`, drop orphan order products/addresses, move native MS3 draft carts off MS2 order ids, bump AUTO_INCREMENT.
+- Repair catalog: `repairOrders()` re-migrates orders broken by earlier versions.
+- Schema map: orders `comment`→`order_comment`, addresses `receiver`→`first_name`, payments/deliveries/statuses `rank`→`position`, deliveries `free_delivery_amount`.
+
+1.3.29-pl
+=======
+- Heal minicart UX: strip `[[!msOrder]]`/`#orderSuccess` from dropdown (layout was checkout-in-bag); mount `#msOrder` in modals; wire MS3 `selector` for `#minicart-content` + live `#msMiniCartCount` badge; uncache `[[!$header]]` so cart SSR is not frozen; backfill empty `product_key`; live-sync badge/panel on `ms3:cart:updated` when SSR HTML is missing.
+
+1.3.28-pl
+=======
+- Heal WaitJq: re-emit bootstrap and wipe leftover `need` (`(!need||!deps.length)` → ReferenceError that blocked minicart hover/fancybox).
+
+1.3.27-pl
+=======
+- Heal minicart: Fenom-safe jQuery wait (`deps` not `need` + `{ignore}`) — `{need=` blanked customMiniCart; restore `#msMiniCart` bag trigger.
+- Purge MS2 traces: strip `miniShop2Config`, rewrite minishop2 asset URLs, disable swords/minishop2 plugins (addProductFields, …).
+- Quiet PHP8 theme noise: HitsPage `$hpCount`, sortLink/Sort `$_GET`, pdoPage `$showLog`.
+
+1.3.26-pl
+=======
+- Heal nav: set `hidemenu=1` on all msProduct (after migrate/undelete they stay 0 and flood pdoMenu mega-menu with SKUs).
+- Heal search: wire `SimpleSearchForm` → themed `SearchForm` and sync into `simplesearch/.../searchform.chunk.tpl` (package file overrides DB chunk).
+- Heal category cards: replace `sortby=RAND()` with stable menuindex; alias missing product-no-pic → no-photo; empty image default.
+
+1.3.25-pl
+=======
+- Heal cart: MS3 `FormData(form)` never includes submit-button `ms3_action` — inject hidden inputs per form + capture-phase submitter polyfill so «В корзину» works on cards and product pages.
+- Heal front deep audit: script↔markup id/class cross-check, theme `assets/**/*.js` MS2→MS3 selector rewrite, unguarded fancybox/slick notes.
+- PHP 8 signatures: also patch typed params (`array $config`) after optionals (MIGX hero Deprecated).
+
+1.3.24-pl
+=======
+- Heal front scripts: wait for `window.load` + jQuery plugins (fancybox/slick/…) before theme `$()` — fixes `fancybox is not a function` that broke after early mmxWaitJq; upgrades existing guards.
+- PHP 8 signatures: auto-patch optional-before-required in MIGX (and similar component files) so hero getImageList no longer prints Deprecated.
+- Catalog repair: undelete shop resources soft-deleted by Package Management uninstall of miniShop2 (MS3 cart «товар не найден»).
+
+1.3.23-pl
+=======
+- Catalog repair: map MS2 `stock`→MS3 `stock` (was only `count`→stock — zero stock / empty «Новинки»/«Хиты»); remigrate files `parent`→`parent_id` (gallery sizes); promote modDocument shop folders → msCategory (MS3 scope ignored them).
+- Heal front: msGallery default `&return=`tpl`` (stops literal «Array»); jQuery wait-guard for inline `$()` in header/minicart chunks (`$ is not defined`).
+
+1.3.22-pl
+=======
+- KB 1.2.0: ~100 extras with `quarantine: prepare|post_ms3` (setup killers vs MS2-ecosystem / PHP8 broken). Heal cleanup reads KB lists instead of a short hardcode; plus on-disk heuristic scan (miniShop2 getService, msProductData maps, MODX2 paths, ms* addon names).
+- Covers stand leftovers (msearch2, mstools, mschart, loginfields, …) and common zoo ms* addons so broken components are retired in one pass, not one-by-one.
+
+1.3.21-pl
+=======
+- Heal front: recreate shop snippets (msProducts, msCart, …, msMiniCart) if Package Management uninstall of miniShop2 deleted shared names while MiniShop3 stayed installed; restore default `return`/`tpl` properties (empty listing otherwise).
+- Broken-extras cleanup: scrub system setting `extension_packages` (tickets/msdiscount/… paths after quarantine) — stops error.log spam; quarantine msorderdiscount; disable plugins that map short `modUser` on MODX 3; stub looked/xlike snippets.
+
+1.3.20-pl
+=======
+- Heal front / after MS3: auto-quarantine broken extras (looked, xlike, msdiscount, msminicartdynamic, …), disable plugins that inject MS2 `msProductData` maps (empty catalog), remove dead namespaces; then repair catalog. Do not uninstall miniShop2 via Package Management — use Retire.
+
+1.3.19-pl
+=======
+- UI: after Apply core alert mentions PHP switch before /setup/; busy hint «several minutes»; package-fail alert Russian.
+- Heal front: ms2_form anywhere in class list, ms2_action→ms3_action, data-ms3-form, cart total classes; stub orphan Tickets (etc.) snippets when component quarantined — stops Fatal initialize() on null on product pages.
+- Auto-heal front after Install/update packages.
+
+1.3.18-pl
+=======
+- Phase 3 «Install/update packages»: download successors (MiniShop3 + KB requires like VueTools/pdoTools) and outdated MODX-3-ready extras via transport providers (rest.modx.com / modstore.pro). Confirm required; does not uninstall.
+- KB: minishop3.requires + vuetools entry.
+
+1.3.17-pl
+=======
+- Phase 3 «Heal front»: rewrite class_key/newQuery in custom elements, remap leftover MS2 shop snippets, bridge msMiniCart→msCart (prefer customMiniCart), listing thumbs instead of msGallery widget, phpThumbOn makeDir for MODX 3.
+- Auto-runs after Apply ms2→ms3 data and as part of Repair catalog (flexible zoo themes, not stand-specific).
+
+1.3.16-pl
+=======
+- UI modes: Simple (Migrate only) / Expert (all tabs + audit/export). Choice remembered in localStorage.
+
+1.3.15-pl
+=======
+- After Apply core: «Do now» is PHP ≥8.x then /setup/ — not MiniShop3 yet (files 3.x ≠ settings_version until setup).
+- Phase 3 unlocks only when DB settings_version is 3.x.
+
+1.3.14-pl
+=======
+- After Recovery/manager rollback: reset migrate-run + Attention markers and auto-run audit (or on next CMP open).
+- Detect stale MODX 3 phase markers while live site is MODX 2 — clear phases so UI does not show all three as done.
+
+1.3.13-pl
+=======
+- Catalog stays put: convert class_key to MiniShop3\\Model\\* before data copy; ensure ms3_products rows for every product resource.
+- Phase 3 «Repair catalog» when PM uninstall left empty listings (convert + fill + inventory advice).
+- Hard warning: never uninstall miniShop2 via Package Management — only MigrateMODX Retire.
+
+1.3.12-pl
+=======
+- After ms2→ms3 data apply: auto-retire miniShop2 (class_key→MiniShop3\\Model\\*, quarantine folders, clear cache).
+- Phase 3 button «Retire miniShop2» for sites that already applied data but front still Fatal’s on modprocessor.class.php.
+
+1.3.11-pl
+=======
+- ms2→ms3 schema: count→stock, source→source_id (MiniShop3 product fields).
+- Soft-skip missing optional MS3 columns; only table/required/zero-map gaps hard-fail.
+- Apply ms3 returns real error text + report filename (no more opaque «ms3 data apply failed»).
+
+1.3.10-pl
+=======
+- Phase 3 unlock: do not let stale last-audit modx_version=2.x override live MODX 3 after /setup/.
+- Stronger modxMajor() (version.inc / API / Revolution class) and MODX 3 namespace package detection.
+- migrate_status patches cached audit env version when live major is 3; Refresh status button on locked Phase 3.
+
+1.3.9-pl
+=======
+- Site harden: force-quarantine Tickets/AdminTools/Batcher + any map['modUser'] killer; disable plugins; clear cache.
+- Prepare hard-blocks if killers remain; Apply core refuses until disk is clean (force override only).
+- Harden again after core apply so /setup/ never boots a broken manager.
+- /migratemodx-firstaid.php — token-gated one-click fix without FTP when manager is empty.
+
+1.3.8-pl
+=======
+- Tickets marked incompatible: stock metadata breaks MODX 3 manager (modUser map).
+- Known blockers quarantine includes Tickets (+ AdminTools, Batcher).
+- Recovery Console: «Quarantine known blockers + clear cache» for empty post-setup manager.
+
+1.3.7-pl
+=======
+- Phase 2 Apply core: create pre-apply snapshot first; Attention shows emergency Recovery exit.
+- Prepare/Apply return Recovery credentials to UI modal; Snapshot tab works without re-audit.
+- Bootstrap loads last-audit + run state so CMP no longer shows virgin «Ready to migrate?» mid-flight.
+- Snapshot tab: emergency exit card, rotate Recovery password, howto always visible.
+
+1.3.6-pl
+=======
+- After Apply core: hard Attention if host PHP < required for /setup/ (Composer platform_check).
+- Guide: switch PHP ≥8.1/8.2 before opening /setup/.
+
+1.3.5-pl
+=======
+- Clarify setup hint: AdminTools/Batcher auto-quarantine; manual rename only on failure.
+
+1.3.4-pl
+=======
+- Vendor compat in Prepare: try high-safety PHP/MODX3 port on «won't survive» extras, else quarantine.
+- Ported packages renamed `*.__mmx_ported` (namespace retargeted); disabled `*.__disabled_for_modx3`.
+- Replace-with-successor packages stay manual; Attention Report lists ported / quarantined / manual.
+
+1.3.3-pl
+=======
+- Live version catalog: latest MODX 3.x (GitHub tags), package repo floors, MiniShop3 docs/KB PHP+MODX mins.
+- Settings target_modx / target_php default to `auto`; apply/download use effective resolved versions.
+- Audit Environment shows latest / required / effective targets and per-package requirement drivers.
+
+1.3.2-pl
+=======
+- Target core default 3.0.3 (MiniShop3 requires MODX ≥3.0.3); target PHP default 8.2.
+- Download/apply map includes 3.0.3; legacy UI 3.0.0 overridden by setting; installer bumps old settings.
+
+1.3.1-pl
+=======
+- Snapshot store default outside core (`migratemodx-data/`); restore stages archives before wiping core.
+- Legacy `core/cache/migratemodx` snapshots migrated; rollback cannot delete its own backups.
+
+1.3.0-pl
+=======
+- Dual goals: stay on MODX 2 → PHP 8.x, or move to MODX 3 (phased).
+- Attention Report: known vs unknown/needs_agent + agent_export disclaimer (inventory, not verdict).
+- MODX 2↔3 schema notes + DB refresh advice in Prepare.
+- migrate_prepare_php / migrate_set_goal; positioning: prefight, not few-click migrate.
+
+1.2.1-pl
+=======
+- Migrate tab: 3 phases (Prepare on MODX 2 → Apply core → After MODX 3 MiniShop3 + data).
+- Prepare always dry-runs ms2→ms3; MiniShop3 install/apply only in Phase 3 on MODX 3+.
+- New action migrate_apply_ms3_data; status returns phase + next_actions.
+
+1.2.0-pl
+=======
+- Migrate pipeline (1A+2B): Prepare migration without core apply; Attention Report; explicit Apply core 3.0.0 (staging).
+- MODX 3 / ms2→ms3 high-safety rewrites + package compatibility matrix.
+- ms2→ms3 data migrator (schema map, dry-run/apply, unmapped report); ms3 install confirm required.
+- Post-upgrade audit diff after core apply; UI tab «Переезд» / Migrate.
+
+1.1.4-pl
+=======
+- Recovery credentials: copyable fields + full site URLs (not path-only); no blocking alert.
+
+1.1.3-pl
+=======
+- Cross-check installed packages against rest.modx.com and modstore.pro (cached; downtime is non-fatal).
+- Settings for repo URLs, timeout, cache TTL; UI shows repo status and latest MODX 3 builds.
+
+1.1.2-pl
+=======
+- Keepers only for hand-written custom + manual overrides; ALL installed extras (even KB unknown) are vendor stock.
+- Ownership: @package docblock, category, package-name element match (modDevTools etc.).
+
+1.1.1-pl
+=======
+- Keepers = custom code + manual overrides; skip stock of packages with update/replace/ok (FormIt etc.).
+- Package ownership for snippets/plugins/chunks; long paths wrap inside cards.
+
+1.1.0-pl
+=======
+- Full-viewport CMP: lock manager page scroll, scroll only inside component.
+- Adaptive package cards + finding grids (multi-column while space allows).
+- PHP/Syntax/Code: keepers vs replace packages, type filters, grouped places, peek, selective autofix.
+
+1.0.9-pl
+=======
+- Package KB 1.1: successors (ms2→ms3), min_version checks, detect installed replacements; UI migration path.
+
+1.0.8-pl
+=======
+- Fix manager scroll for tall CMP content; humanized blockers/warnings cards; clearer Plan + Recovery UX.
+
+1.0.7-pl
+=======
+- Harden audit: each section isolated (Exception/Error); package inventory/heuristics resilient.
+- Support MODX >= 2.6.5 (warn until 2.8.x). Resilience + run_all test suites.
+
+1.0.6-pl
+=======
+- Template scan: never fatal on missing Fenom\\Provider; prefer pdoTools Fenom, else regex-only.
+
+1.0.5-pl
+=======
+- Fix silent audit: packages permission on connector, button type=button, auth fallback, errors shown.
+- Busy overlay with spinner and rotating step labels for long ops.
+
+1.0.4-pl
+=======
+- Fix brand checkmark centering/clip; force white label on primary buttons vs manager CSS.
+
+1.0.3-pl
+=======
+- Polish CMP UI: teal brand shell, Manrope/Source Sans, pill tabs, score hero, chips.
+
+1.0.2-pl
+=======
+- Fix lexicon path: lexicon/ (not lexicons/) so RU menu labels load.
+- Full Russian UI strings for CMP; JS uses manager lexicon.
+
+1.0.1-pl
+=======
+- Fix manager menu: parent is components (RU «Пакеты»), not orphan workspaces.
+- Menu permission packages (same as Installer). Resolver repairs old installs.
+
+1.0.0-pl
+=======
+- Initial release: preflight, KB, PHP prep, Fenom/MODX syntax scan,
+  snapshot/rollback, Recovery Console, upgrade orchestrator to 3.0.0.
+
+
